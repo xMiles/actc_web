@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文言文阅读难度分级系统</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>文言文阅读难度分级系统</h1>
+            <p class="subtitle">基于语言学特征的文言文阅读难度分析</p>
+        </header>
+
+        <div class="input-section">
+            <h2>文本输入</h2>
+            <div class="textarea-container">
+                <textarea id="textInput" placeholder="请输入古汉语文本..." rows="10" maxlength="3000"></textarea>
+                <div class="char-counter">
+                    <span id="charCount">0</span>/3000字
+                </div>
+            </div>
+            <div class="button-group">
+                <button id="classifyBtn" class="primary-btn">分析文本</button>
+                <button id="clearBtn" class="secondary-btn">清空</button>
+                <button id="sampleBtn" class="secondary-btn">示例文本</button>
+            </div>
+        </div>
+        
+        <div class="results-section" id="results" style="display: none;">
+            <h2>分析结果</h2>
+            
+            <!-- 警告信息区域 -->
+            <div id="warningsContainer" class="warnings-container" style="display: none;">
+                <div class="warning-box">
+                    <div class="warning-header">
+                        <h3>⚠️ 文本质量提醒</h3>
+                    </div>
+                    <div id="warningsList" class="warnings-list"></div>
+                </div>
+            </div>
+            
+            <div class="result-box">
+                <div class="result-header">
+                    <h3>分类结果</h3>
+                </div>
+                <p><strong>文本类别：</strong> <span id="category" class="highlight-text"></span></p>
+                <div id="confidence"></div>
+            </div>
+            
+            <!-- 层次分析区域 -->
+            <div class="level-analysis-section" id="levelAnalysis" style="display: none;">
+                <div class="result-header">
+                    <h3>文本复杂度分析</h3>
+                </div>
+                
+                <div class="level-chart-container">
+                    <img id="levelChart" alt="层次分析图表" style="width: 100%; max-width: 1000px;">
+                </div>
+            </div>
+            
+            <div class="explanation">
+                <div class="result-header">
+                    <h3>各层级评分</h3>
+                </div>
+                <div id="levelSummaryContent"></div>
+            </div>
+        </div>
+        
+        <div class="loading" id="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>正在分析文本中，请稍候...</p>
+        </div>
+        
+        <div class="error" id="error" style="display: none;">
+            <div id="errorContent">
+                <p id="errorMessage"></p>
+                <div id="errorDetails" class="error-details"></div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2025 文言文阅读难度分级系统 | 版本 1.0</p>
+        </footer>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
